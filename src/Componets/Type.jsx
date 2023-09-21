@@ -9,26 +9,20 @@ const Type = (props) => {
     const setQuestionArr = context.setQuestionArr;
     const QuestionArr = context.QuestionArr;
 
-    const clickHandler = (event)=>{
-        if(event.target.checked){
-            const arr = QuestionArr;
-            arr.push(data);
-            setQuestionArr(arr);
-        }
-        else{
-            const arr = [];
-            QuestionArr.map( a=> {
-                if(a!==event.target.name){
-                    arr.push(a)       
-                }
-                
-            })
-            setQuestionArr(arr);
-        }
-    }
+    const clickHandler = (event) => {
+        setQuestionArr( (prevArr) => {
+            if (event.target.checked) {
+                return [...prevArr, data];
+            } 
+            else{
+                return prevArr.filter((a) => a !== event.target.name);
+          }
+        });
+    };
+      
     
   return (
-    <div>
+    <div className='type'>
         <input type='checkbox' id={data} onChange={clickHandler} name={data}></input>
         <label htmlFor={data}>{data}</label>
     </div>

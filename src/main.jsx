@@ -5,11 +5,16 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom';
 import DataState from './Context/DataState.jsx';
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>    
-        <DataState>
-            <App />
-        </DataState>
+            
+            <DataState>
+           
+                <App />
+            
+            </DataState>
+            
     </BrowserRouter>
 
 )
