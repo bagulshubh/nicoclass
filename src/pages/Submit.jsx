@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import DataContext from '../Context/DataContext'
+import { useNavigate } from 'react-router-dom';
 
 const Submit = () => {
 
@@ -12,6 +13,16 @@ const Submit = () => {
     const elapsedTimeS = 60 - seconds;
     const timeperq = context.timeperq;
     const QuestionArr = context.QuestionArr;
+    const navigate = useNavigate();
+
+    const restartHandler = ()=>{
+      context.setUsername("");
+      context.setQuestionArr([]);
+      context.setQuestions([]);
+      context.setTotalTime(0);
+      context.setTimeperq([]);
+      navigate('/');
+    }
 
   return (
     <div className='submit-wrapper'>
@@ -29,6 +40,8 @@ const Submit = () => {
         })
 
       }</div>
+
+      <div className='btn' onClick={restartHandler}>Restart</div>
       
     </div>
   )
