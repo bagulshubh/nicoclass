@@ -8,7 +8,6 @@ const DataState = (props) => {
     const [totalTime , setTotalTime] = useState(0);
     const [Questions , setQuestions] = useState([]);
 
-
     const getQuestions = async()=>{
 
       const url = 'https://0h8nti4f08.execute-api.ap-northeast-1.amazonaws.com/getQuestionDetails/getquestiondetails?QuestionID=';
