@@ -9,10 +9,13 @@ const Home = () => {
   const questionTypes = ['AreaUnderTheCurve_21' , 'BinomialTheorem_13' , 'BinomialTheorem_24','AreaUnderTheCurve_15','AreaUnderTheCurve_2','BinomialTheorem_3','BinomialTheorem_4','AreaUnderTheCurve_5'];
 
   const context = useContext(DataContext);
+
   const setUsername = context.setUsername;
   const QuestionArr = context.QuestionArr;
   const setTotalTime = context.setTotalTime;
+  
   const navigate  = useNavigate();
+
   const changeHandler = (event)=>{
     setUsername(event.target.value);
   }

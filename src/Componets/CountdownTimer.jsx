@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import DataContext from '../Context/DataContext';
+
 const CountdownTimer = ({ initialMinutes}) => {
+
   const context = useContext(DataContext);
   const minutes = context.minutes;
   const setMinutes = context.setMinutes;  
@@ -20,7 +22,7 @@ const CountdownTimer = ({ initialMinutes}) => {
       timer = setInterval(() => {
         if (seconds === 0) {
           if (minutes === 0) {
-            clearInterval(timer); // Stop the timer when it reaches 0
+            clearInterval(timer); 
           } else {
             setMinutes(minutes - 1);
             setSeconds(59);
@@ -32,7 +34,7 @@ const CountdownTimer = ({ initialMinutes}) => {
     }
 
     return () => {
-      clearInterval(timer); // Cleanup the timer when the component unmounts
+      clearInterval(timer); 
     };
   }, [minutes, seconds]);
 
