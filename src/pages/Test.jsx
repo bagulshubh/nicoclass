@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import DataContext from "../Context/DataContext";
 import { MathJax, MathJaxContext } from "better-react-mathjax";
 import Card from "../Componets/Card";
+import CountdownTimer from "../Componets/CountdownTimer";
 
 const Test = () => {
     const context = useContext(DataContext);
@@ -57,21 +58,24 @@ const Test = () => {
     };
 
     return (
-        <div>
+        <div className="test-wrapper">
             <MathJaxContext>
 
                 {/* This will dynamically change the control panel for questions  */}
-                <div>
+                <div className="control-panel">
+                    <div className="number-panel">
                     {
                         Questions.map((q , index)=>{
                             return(
-                                <Card setind={setind} index={index}></Card>
+                                <Card setind={setind} index={index} ind={ind}></Card>
                             )
                         })
                     }
+                    </div>
+                    <CountdownTimer initialMinutes={context.totalTime}></CountdownTimer>
                 </div>
 
-                <div>
+                <div className="qustion-wrapper">
                     {/* {!parts ? (
                         <div></div>
                     ) : (
@@ -94,7 +98,7 @@ const Test = () => {
                     
                 </div>
 
-                <div>
+                <div className="btn-wrapper">
                     {ind === 0 ? (
                         <div></div>
                     ) : (

@@ -4,6 +4,7 @@ const Card = (props) => {
 
     const index = props.index;
     const setind = props.setind;
+    const ind = props.ind;
 
     const clickHandler = ()=>{
         setind(index);
@@ -11,7 +12,7 @@ const Card = (props) => {
 
 
   return (
-    <div onClick={clickHandler}>
+    <div onClick={clickHandler} className={ind===index ? ("card active"):("card")}>
       {index+1}
     </div>
   )
