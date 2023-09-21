@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import DataContext from "../Context/DataContext";
 import { MathJax, MathJaxContext } from "better-react-mathjax";
 import Card from "../Componets/Card";
@@ -12,15 +12,12 @@ const Test = () => {
     const prevtimes = context.prevtimes;
     const minutes = context.minutes;
     const seconds = context.seconds;
-
     const [ind, setind] = useState(0);
     const navigate = useNavigate();
 
     useState(()=>{
         context.setPrevtimem(context.totalTime-1);
     })
-
-    
 
     const nextHandler = () => {
         console.log("next");

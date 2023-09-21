@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import DataContext from '../Context/DataContext';
 
 const Card = (props) => {
+  
     const context = useContext(DataContext)
     const index = props.index;
     const setind = props.setind;

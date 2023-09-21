@@ -35,7 +35,17 @@ const Submit = () => {
         
         QuestionArr.map((q,index)=>{
             return (
-                <div>{q} = {timeperq[index][0]}:{timeperq[index][1]}</div>
+                <div>
+                {
+                  timeperq[index] ? (
+                    <div>{q} = {timeperq[index][0]}:{timeperq[index][1]}</div>
+                  ):(
+                    <div>{q} = 0:0</div>
+                  )
+                  
+                }
+                </div>
+                
             )
         })
 

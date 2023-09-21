@@ -5,9 +5,7 @@ import DataContext from '../Context/DataContext';
 const Type = (props) => {
     const data = props.data;
     const context = useContext(DataContext);
-
     const setQuestionArr = context.setQuestionArr;
-    const QuestionArr = context.QuestionArr;
 
     const clickHandler = (event) => {
         setQuestionArr( (prevArr) => {

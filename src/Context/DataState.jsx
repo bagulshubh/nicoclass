@@ -1,4 +1,4 @@
-import { useState, useSyncExternalStore } from "react";
+import { useState } from "react";
 import DataContext from "./DataContext";
 
 const DataState = (props) => {
