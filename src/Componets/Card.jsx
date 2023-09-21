@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import DataContext from '../Context/DataContext';
 
 const Card = (props) => {
-  
+
     const context = useContext(DataContext)
     const index = props.index;
     const setind = props.setind;
@@ -34,7 +34,7 @@ const Card = (props) => {
         context.setTimeperq(arr);
         context.setPrevtimem(context.minutes);
         context.setPrevtimes(context.seconds);
-        console.log(arr[ind]);
+        //console.log(arr[ind]);
         setind(index);
 
     }

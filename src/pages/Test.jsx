@@ -20,14 +20,14 @@ const Test = () => {
     })
 
     const nextHandler = () => {
-        console.log("next");
+        //console.log("next");
         calculateTime(ind);
         const index = ind + 1;
         setind(index);
     };
 
     const prevHandler = () => {
-        console.log("prev");
+        //console.log("prev");
         calculateTime(ind);
         const index = ind - 1;
         setind(index);
@@ -55,7 +55,7 @@ const Test = () => {
         context.setTimeperq(arr);
         context.setPrevtimem(context.minutes);
         context.setPrevtimes(context.seconds);
-        console.log(arr[ind]);
+        //console.log(arr[ind]);
     }
 
     const submitHandler = ()=>{
