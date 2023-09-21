@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import Type from '../Componets/Type';
 import DataContext from '../Context/DataContext';
-import { Navigate , useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 
 
 const Home = () => {

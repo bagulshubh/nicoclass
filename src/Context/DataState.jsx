@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import DataContext from "./DataContext";
 
 const DataState = (props) => {
@@ -7,6 +7,11 @@ const DataState = (props) => {
     const [QuestionArr,setQuestionArr] = useState([]); 
     const [totalTime , setTotalTime] = useState(0);
     const [Questions , setQuestions] = useState([]);
+    const [minutes, setMinutes] = useState(0);
+    const [seconds,setSeconds] = useState(0);
+    const [timeperq , setTimeperq] = useState([]);
+    const [prevtimem,setPrevtimem] = useState(0);
+    const [prevtimes,setPrevtimes] = useState(60);
 
     const getQuestions = async()=>{
 
@@ -25,7 +30,7 @@ const DataState = (props) => {
     }
 
     return (
-      <DataContext.Provider value={{Username,setUsername,QuestionArr,setQuestionArr,setTotalTime,totalTime,getQuestions,Questions}}>
+      <DataContext.Provider value={{Username,setUsername,QuestionArr,setQuestionArr,setTotalTime,totalTime,getQuestions,Questions,minutes,setMinutes,seconds,setSeconds,setQuestions,timeperq,setTimeperq,setPrevtimem,prevtimem,prevtimes,setPrevtimes}}>
         {props.children}
       </DataContext.Provider>
     );

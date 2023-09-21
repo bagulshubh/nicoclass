@@ -3,59 +3,68 @@ import DataContext from "../Context/DataContext";
 import { MathJax, MathJaxContext } from "better-react-mathjax";
 import Card from "../Componets/Card";
 import CountdownTimer from "../Componets/CountdownTimer";
+import { useNavigate } from "react-router-dom";
 
 const Test = () => {
     const context = useContext(DataContext);
     const Questions = context.Questions;
-    const [parts, setParts] = useState([]);
-    const [marked, setMarked] = useState([]);
-    console.log(Questions);
+    const prevtimem = context.prevtimem;
+    const prevtimes = context.prevtimes;
+    const minutes = context.minutes;
+    const seconds = context.seconds;
+
     const [ind, setind] = useState(0);
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        if (Questions.length > ind) {
-            const str = Questions[ind];
-            const arr = [];
-            const mark = [];
-            let temp = "";
-            let flag = false;
+    useState(()=>{
+        context.setPrevtimem(context.totalTime-1);
+    })
 
-            for (let i = 0; i < str.length; i++) {
-                if (str[i] === "$") {
-                    arr.push(temp);
-
-                    if (flag) {
-                        mark.push(temp);
-                        flag = false;
-                    } else {
-                        flag = true;
-                    }
-                    temp = "";
-                } else {
-                    temp += str[i];
-                }
-            }
-
-            if (temp !== "") {
-                arr.push(temp);
-            }
-
-            setMarked(mark);
-            setParts(arr);
-        }
-    }, [Questions, ind]);
+    
 
     const nextHandler = () => {
         console.log("next");
+        calculateTime(ind);
         const index = ind + 1;
         setind(index);
     };
 
     const prevHandler = () => {
         console.log("prev");
+        calculateTime(ind);
         const index = ind - 1;
         setind(index);
     };
+
+    const calculateTime = (ind)=>{
+        let arr = context.timeperq;
+        let timem;
+        let times;
+        if(arr[ind]){
+            timem = arr[ind][0] + (Math.abs( prevtimem - minutes));
+            times = arr[ind][1] + (Math.abs(prevtimes - seconds)) ;
+        }
+        else{
+            timem = (Math.abs( prevtimem - minutes));
+            times =  (Math.abs(prevtimes - seconds)) ;
+        }
+        
+        if(times>=60){
+            times = 0;
+            timem = timem + 1;
+        }
+        
+        arr[ind] = [timem,times];
+        context.setTimeperq(arr);
+        context.setPrevtimem(context.minutes);
+        context.setPrevtimes(context.seconds);
+        console.log(arr[ind]);
+    }
+
+    const submitHandler = ()=>{
+        calculateTime(ind);
+        navigate('/submit');
+    }
 
     return (
         <div className="test-wrapper">
@@ -73,27 +82,12 @@ const Test = () => {
                     }
                     </div>
                     <CountdownTimer initialMinutes={context.totalTime}></CountdownTimer>
-                </div>
+                </div> 
 
                 <div className="qustion-wrapper">
-                    {/* {!parts ? (
-                        <div></div>
-                    ) : (
-                        parts.map((part) => {
-                            return (
-                                <div>
-                                    {marked.includes(part) ? (
-                                        <MathJax dynamic>\[{part}\]</MathJax>
-                                    ) : (
-                                        <span>{part}</span>
-                                    )}
-                                </div>
-                            );
-                        })
-                        
-                    )} */}
+                    
                     {
-                        parts.length>0 ? (<MathJax dynamic inline><MathJax>{`\\[${parts}\\]`}</MathJax></MathJax>):(<div></div>)
+                        Questions.length>0 ? (<MathJax dynamic inline><MathJax>{`\\[${Questions[ind]}\\]`}</MathJax></MathJax>):(<div></div>)
                     }
                     
                 </div>
@@ -115,7 +109,7 @@ const Test = () => {
                     )}
                 </div>
 
-                <div className="btn">Submit</div>
+                <div className="btn" onClick={submitHandler}>Submit</div>
             </MathJaxContext>
         </div>
     );

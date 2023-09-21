@@ -1,8 +1,17 @@
-import React, { useState, useEffect } from 'react';
-
-const CountdownTimer = ({ initialMinutes }) => {
-  const [minutes, setMinutes] = useState(initialMinutes);
-  const [seconds, setSeconds] = useState(0);
+import React, { useState, useEffect, useContext } from 'react';
+import DataContext from '../Context/DataContext';
+const CountdownTimer = ({ initialMinutes}) => {
+  const context = useContext(DataContext);
+  const minutes = context.minutes;
+  const setMinutes = context.setMinutes;  
+  const seconds = context.seconds;
+  const setSeconds = context.setSeconds;
+  
+  
+  useEffect(()=>{
+    setMinutes(initialMinutes)
+    setSeconds(0);
+  },[])
 
   useEffect(() => {
     let timer;
